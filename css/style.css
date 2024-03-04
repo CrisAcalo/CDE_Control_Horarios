@@ -1,0 +1,157 @@
+:root {
+    --white: #ffffff;
+    --black: #000000;
+    --dark: #232830;
+    --very-light-pink: #c7c7c7;
+    --text-input-field: #f7f7f7;
+    --hospital-green: #0d6efd;
+    --sm: 14px;
+    --md: 16px;
+    --lg: 18px:
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.principal_container {
+    width: 100%;
+    padding: 65px 10px 10px 10px;
+}
+
+.main_container {
+    width: 100%;
+    background-color: var(--white);
+}
+
+.sections_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.container_bordered {
+    border: 2px dashed var(--very-light-pink);
+    width: 30%;
+    max-width: 350px;
+    min-height: 450px;
+    margin: 30px;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.element_draggable {
+    background-color: #ff3b3b;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 20px 5px;
+    margin-bottom: 20px;
+    cursor: grab;
+}
+
+.element_dragging {
+    background-color: #a02b2b;
+    /* Cambia el color de fondo según tus preferencias */
+    border: 2px dashed #ff0000;
+    /* Cambia el borde según tus preferencias */
+}
+
+.profesores_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: calc(100vh - 75px);
+}
+
+.materias_contianer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: calc(100vh - 75px);
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+}
+
+.materias_table{
+    max-height: calc(100vh - 280px);
+}
+
+.form_container{
+    flex-grow: 2;
+    max-width: 500px;
+    margin: 0 auto;
+    height: max-content;
+}
+
+.table-primary{
+    width: 100%;
+}
+
+.table-primary tr th{
+    background: var(--hospital-green);
+    color: var(--white);
+    padding: 5px;
+    font-size: 1.2rem;
+    border-right: 1px solid var(--very-light-pink);
+    max-width: max-content;
+}
+
+.table-primary tr th:first-child{
+    border-top-left-radius: 6px;
+}
+
+.table-primary tr th:last-child{
+    border-top-right-radius: 6px;
+}
+
+.table-primary tr td{
+    padding: 5px;
+    /* min-width: 150px; */
+    max-width: max-content;
+    border-bottom: 1px solid var(--very-light-pink);
+}
+
+.table_ingreso_container{
+    flex-grow: 8;
+    overflow-y: auto;
+    height: 100%;
+}
+
+/* ESTILOS GENERALES */
+.display_none{
+    display: none;
+}
+
+/* ESTILOS DE BARRA DE SCROLL */
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width:7px;
+}
+
+::-webkit-scrollbar-button:increment,::-webkit-scrollbar-button {
+    display: none;
+} 
+
+::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--hospital-green);
+    border-radius: 20px;
+    border: none;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
