@@ -1,81 +1,63 @@
 document.addEventListener("DOMContentLoaded", function () {
-  cargarProfesores();
+  cargar();
 });
 
-function validarFormularioProfesor() {
-  const nombreValido = validarAlfabeticos(document.getElementById("nombre"));
-  const correoValido = validarCorreo(document.getElementById("email"));
-  const departamentoValido = validarVacio(
-    document.getElementById("departamento")
-  );
-  const jornadaValida = validarVacio(document.getElementById("jornadaTrabajo"));
+function validarFormulario() {
+  const inicioValido = validarVacio(document.getElementById("inicio"));
+  const finalValido = validarVacio(document.getElementById("final"));
 
-  let botonEnviar = $("#ingresarNuevoProfesorButton");
+  let botonEnviar = $("#ingresarNuevoPeriodoButton");
 
-  if (nombreValido && correoValido && departamentoValido && jornadaValida) {
+  if (inicioValido && finalValido) {
     botonEnviar.prop("disabled", false);
   } else {
     botonEnviar.prop("disabled", true);
   }
 }
 
-function validarFormularioEditProfesor2() {
-  const nombreValido = validarAlfabeticos(
-    document.getElementById(`nombre_editar`)
-  );
-  const correoValido = validarCorreo(document.getElementById(`email_editar`));
-  const departamentoValido = validarVacio(
-    document.getElementById(`departamento_editar`)
-  );
-  const jornadaValida = validarVacio(
-    document.getElementById(`jornadaTrabajo_editar`)
-  );
+function validarFormularioEditar() {
+  const inicioValido = validarVacio(document.getElementById("inicio_editar"));
+  const finalValido = validarVacio(document.getElementById("final_editar"));
 
-  const botonEnviar = document.querySelector(`#editarProfesorButtonTest`);
+  let botonEnviar = $("#editarPeriodoButton");
 
-  if (nombreValido && correoValido && departamentoValido && jornadaValida) {
-    botonEnviar.disabled = false;
+  if (inicioValido && finalValido) {
+    botonEnviar.prop("disabled", false);
   } else {
-    botonEnviar.disabled = true;
+    botonEnviar.prop("disabled", true);
   }
 }
 
-function nuevoProfesor() {
-  const botonEnviar = $("#ingresarNuevoProfesorButton");
+function nuevo() {
+  const botonEnviar = $("#ingresarNuevoPeriodoButton");
   const resultado_response = $("#resultado_response");
 
-  let nombre = $("#nombre");
-  let correo = $("#email");
-  let departamento = $("#departamento");
-  let jornada = $("#jornadaTrabajo");
-  const nombreValido = validarAlfabeticos(nombre[0]);
-  const correoValido = validarCorreo(correo[0]);
-  const departamentoValido = validarVacio(departamento[0]);
-  const jornadaValida = validarVacio(jornada[0]);
+  let inicio = $("#inicio");
+  let final = $("#final");
+  const inicioValido = validarVacio(inicio[0]);
+  const finalValido = validarVacio(final[0]);
 
-  if (nombreValido && correoValido && departamentoValido && jornadaValida) {
+  if (inicioValido && finalValido) {
     $.ajax({
-      url: "../Controller/ProfesorController.php?function=createProfesor",
+      url: "../Controller/PeriodoController.php?function=create",
       method: "POST",
       contentType: "application/json",
       data: JSON.stringify({
-        nombre: nombre.val(),
-        correo: correo.val(),
-        departamento: departamento.val(),
-        dedicacion: jornada.val(),
+        inicio: inicio.val(),
+        final: final.val(),
       }),
       success: function (response) {
         response = JSON.parse(response);
 
         if (response.status === "Success") {
-          cargarProfesores();
+          cargar();
           resultado_response
             .removeClass("border-danger bg-danger text-danger")
             .addClass("border-success bg-success text-success")
             .html(response.response)
             .css("display", "block");
           // Limpiar valores y clases de validación
-          [nombre, correo, departamento, jornada].forEach((element) => {
+          [inicio, final].forEach((element) => {
             element.val("").removeClass("is-valid is-invalid");
           });
         } else if (response.status === "Error") {
@@ -102,34 +84,28 @@ function nuevoProfesor() {
   }
 }
 
-function editarProfesor2(user_id) {
-  const botonEnviar = $("#editarProfesorButtonTest");
+function editar(user_id) {
+  const botonEnviar = $("#ingresarNuevoPeriodoButton");
   const resultado_response = $("#resultado_response");
 
-  let nombre = $("#nombre_editar");
-  let correo = $("#email_editar");
-  let departamento = $("#departamento_editar");
-  let jornada = $("#jornadaTrabajo_editar");
+  let inicio = $("#inicio_editar");
+  let final = $("#final_editar");
+  const inicioValido = validarVacio(inicio[0]);
+  const finalValido = validarVacio(final[0]);
 
-  const nombreValido = validarAlfabeticos(nombre[0]);
-  const correoValido = validarCorreo(correo[0]);
-  const departamentoValido = validarVacio(departamento[0]);
-  const jornadaValida = validarVacio(jornada[0]);
-
-  if (nombreValido && correoValido && departamentoValido && jornadaValida) {
+  if (inicioValido && finalValido) {
     $("#modal_editar").modal("hide");
 
     $.ajax({
-      url: `../Controller/ProfesorController.php?function=editProfesor&user_id=${user_id}`,
+      url: `../Controller/PeriodoController.php?function=edit&user_id=${user_id}`,
       method: "POST",
       contentType: "application/json",
       data: JSON.stringify({
-        nombre: nombre.val(),
-        correo: correo.val(),
-        departamento: departamento.val(),
-        dedicacion: jornada.val(),
+        inicio: inicio.val(),
+        final: final.val(),
       }),
       success: function (response) {
+        cargar();
         response = JSON.parse(response);
 
         resultado_response
@@ -144,7 +120,7 @@ function editarProfesor2(user_id) {
           .css("display", "block");
 
         // Limpiar valores y clases de validación
-        [nombre, correo, departamento, jornada].forEach((element) => {
+        [inicio, final].forEach((element) => {
           element.val("").removeClass("is-valid is-invalid");
         });
 
@@ -168,43 +144,56 @@ function editarProfesor2(user_id) {
 }
 
 function showInformation(user_id) {
-  const botonEnviar = $("#editarProfesorButtonTest");
+  const botonEnviar = $("#editarPeriodoButton");
 
-  let nombre = $("#nombre_editar");
-  let correo = $("#email_editar");
-  let departamento = $("#departamento_editar");
-  let jornada = $("#jornadaTrabajo_editar");
+  let inicio = $("#inicio_editar");
+  let final = $("#final_editar");
 
   $.ajax({
     url:
-      "../Controller/ProfesorController.php?function=getProfesor&user_id=" +
+      "../Controller/PeriodoController.php?function=getPeriodo&user_id=" +
       Number(user_id),
     method: "GET",
     dataType: "json",
     success: function (response) {
       $("#modal_editar").modal("show");
-      nombre.val(response.response.nombre);
-      correo.val(response.response.correo);
-      departamento.val(response.response.departamento);
-      jornada.val(response.response.dedicacion);
-      botonEnviar.attr("onclick", `editarProfesor2(${user_id})`);
+      console.log(response);
+      var fechaString = response.response.periodo_inicio;
+      var fecha = new Date(fechaString);
+      var año = fecha.getFullYear();
+      var mes = fecha.getMonth() + 2;
+      if (mes == 13) {
+        mes = 1;
+      }
+      var fechaFormateada = año + "-" + (mes < 10 ? "0" : "") + mes;
+      inicio.val(fechaFormateada);
+      console.log(fechaFormateada);
+
+      fechaString = response.response.periodo_fin;
+      fecha = new Date(fechaString);
+      año = fecha.getFullYear();
+      mes = fecha.getMonth() + 2; // Nota: getMonth() devuelve valores de 0 a 11, por lo que sumamos 1
+      fechaFormateada = año + "-" + (mes < 10 ? "0" : "") + mes;
+      final.val(fechaFormateada);
+      console.log(fechaFormateada);
+      botonEnviar.attr("onclick", `editar(${user_id})`);
     },
-    error: function () {
-      // Manejar el error si es necesario
+    error: function (xhr, textStatus, errorThrown) {
+      console.error(xhr.status + errorThrown + xhr.responseText);
     },
   });
 }
 
-function eliminarProfesor(user_id) {
+function eliminar(user_id) {
   const resultado_response = $("#resultado_response");
   $.ajax({
-    url: `../Controller/ProfesorController.php?function=deleteProfesor&user_id=${user_id}`,
+    url: `../Controller/PeriodoController.php?function=delete&user_id=${user_id}`,
     method: "POST",
     success: function (response) {
       response = JSON.parse(response);
 
       if (response.status === "Success") {
-        cargarProfesores();
+        cargar();
         resultado_response
           .removeClass("border-danger bg-danger text-danger")
           .addClass("border-success bg-success text-success")
@@ -233,35 +222,33 @@ function eliminarProfesor(user_id) {
   });
 }
 
-function cargarProfesores() {
+function cargar() {
   let tbody_profesores = $("#tbody_profesores");
 
   tbody_profesores.empty();
 
   $.ajax({
-    url: "../Controller/ProfesorController.php?function=mostrarDatos",
+    url: "../Controller/PeriodoController.php?function=getAll",
     method: "POST",
     success: function (response) {
       let parsedResponse = JSON.parse(response);
       parsedResponse.forEach(function (element) {
         tbody_profesores.append(`
-            <tr>
-            <td>${element.id}</td>
-            <td>${element.nombre}</td>
-            <td>${element.correo}</td>
-            <td>${element.departamento}</td>
-            <td>${element.dedicacion}</td>
-            <td>${element.horas_semanales}</td>
-              <td>
-                <button type='button' class='btn btn-primary btn-sm' onclick="showInformation(${element.id})">
-                  Editar
-                </button>
-                <button type='button' class='btn btn-danger btn-sm' onclick='mostrarModalEliminar(${element.id})'>
-                  Eliminar
-                </button>
-              </td>
-            </tr>
-          `);
+              <tr>
+              <td>${element.id}</td>
+              <td>${element.name}</td>
+              <td>${element.periodo_inicio}</td>
+              <td>${element.periodo_fin}</td>
+                <td>
+                  <button type='button' class='btn btn-primary btn-sm' onclick="showInformation(${element.id})">
+                    Editar
+                  </button>
+                  <button type='button' class='btn btn-danger btn-sm' onclick='mostrarModalEliminar(${element.id})'>
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            `);
       });
     },
     error: function (xhr, textStatus, errorThrown) {
@@ -275,5 +262,5 @@ function mostrarModalEliminar(id) {
 
   let botonEliminar = $("#eliminarButton");
 
-  botonEliminar.attr("onclick", `eliminarProfesor(${id})`);
+  botonEliminar.attr("onclick", `eliminar(${id})`);
 }

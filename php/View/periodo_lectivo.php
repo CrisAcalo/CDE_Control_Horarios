@@ -19,11 +19,11 @@
         <div class="navbar-left">
             <img src="../../img/dark_large_logo.png" alt="logo" class="logo" />
             <ul>
-                <li><a href="./profesores.php" class="nav_item_selected">Profesores</a></li>
+                <li><a href="./profesores.php">Profesores</a></li>
                 <li><a href="./materias.php">Materias</a></li>
                 <li><a href="./cursos.php">Cursos</a></li>
                 <li><a href="">Horarios</a></li>
-                <li><a href="./periodo_lectivo.php">Periodos</a></li>
+                <li><a href="./periodo_lectivo.php" class="nav_item_selected">Periodos</a></li>
             </ul>
         </div>
 
@@ -72,7 +72,7 @@
             <div class="p-0 m-3 mx-auto" style="width: 100%;max-width:1500px;">
                 <div class="bg-primary p-3 rounded d-flex flex-wrap justify-content-center align-items-center">
                     <div class="bg-light py-1 px-4 rounded text-center max-width-max-content m-auto">
-                        <h2 class="max-width-max-content">Administración de Profesores</h2>
+                        <h2 class="max-width-max-content">Administración de Periodos Lectivos</h2>
                     </div>
                     <button type="button" class="btn btn-success me-3 my-1 py-1 px-3 height-max-content fs-4" data-bs-toggle="modal" data-bs-target="#modal_nuevo">
                         <i class="bi bi-plus-square-dotted p-0 m-0"></i>
@@ -85,10 +85,8 @@
                                 <tr>
                                     <th>id</th>
                                     <th>Nombre</th>
-                                    <th>Correo</th>
-                                    <th>Departamento</th>
-                                    <th>Jornada</th>
-                                    <th>Horas Semanales</th>
+                                    <th>Inicio</th>
+                                    <th>Final</th>
                                     <th>OP</th>
                                 </tr>
                             </thead>
@@ -104,85 +102,51 @@
     </div>
 
 
-    <!-- Modal new profesor -->
+    <!-- Modal new -->
     <div class="modal fade" id="modal_nuevo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-light">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nuevo Profesor</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nuevo Periodo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     <div class="form_container m-3">
-
-                        <form onsubmit="event.preventDefault()" id="formProfesor" method="post">
+                        <form>
                             <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej: Juan Vasquez" oninput="validarFormularioProfesor()">
+                                <label for="inicio" class="form-label fw-bold">Inicio</label>
+
+                                <input type="month" class="form-control" id="inicio" name="inicio" oninput="validarFormulario()">
+
                                 <div class="valid-feedback">
                                     <!-- Looks good! -->
                                 </div>
                                 <div class="invalid-feedback">
                                     Este campo es obigatorio.<br>
-                                    Solo se aceptan caracteres alfabéticos.
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Correo</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Ej: nombre@example.com" oninput="validarFormularioProfesor()">
-                                <div class="valid-feedback">
-                                    <!-- Looks good! -->
-                                </div>
-                                <div class="invalid-feedback">
-                                    Este campo es obligatorio<br>
-                                    Ingrese un correo válido.
-                                </div>
-                            </div>
+                                <label for="final" class="form-label fw-bold">Final</label>
 
-                            <div class="mb-3">
-                                <label for="departamento" class="form-label">Departamento</label>
-                                <select class="form-select" id="departamento" name="departamento" oninput="validarFormularioProfesor()">
-                                    <option value="" selected>--Seleccione--</option>
-                                    <option value="Ciencias de la Computacion">Ciencias de la Computación</option>
-                                    <option value="Ciencias Exactas">Ciencias Exactas</option>
-                                    <option value="Ciencias de la Tierra">Ciencias de la Tierra</option>
-                                    <option value="Ciencias de la Comunicacion">Ciencias de la Comunicacion</option>
-                                </select>
-                                <div class="valid-feedback">
-                                    <!-- Looks good! -->
-                                </div>
-                                <div class="invalid-feedback">
-                                    Este campo es obligatorio. Elija una opción.
-                                </div>
-                            </div>
+                                <input type="month" class="form-control" id="final" name="final" oninput="validarFormulario()">
 
-                            <div class="mb-3">
-                                <label for="jornadaTrabajo" class="form-label">Jornada de trabajo</label>
-                                <select class="form-select" id="jornadaTrabajo" name="jornadaTrabajo" oninput="validarFormularioProfesor()">
-                                    <option value="" selected>--Seleccione--</option>
-                                    <option value="Tiempo completo">Tiempo completo</option>
-                                    <option value="Tiempo parcial">Tiempo parcial</option>
-                                </select>
                                 <div class="valid-feedback">
                                     <!-- Looks good! -->
                                 </div>
                                 <div class="invalid-feedback">
-                                    Este campo es obligatorio. Elija una opción.
+                                    Este campo es obigatorio.<br>
                                 </div>
                             </div>
 
                             <div class="modal-footer">
                                 <input type="reset" value="Limpiar" class="btn btn-secondary me-3">
-                                <button type="button" class="btn btn-primary" onclick="nuevoProfesor()" id="ingresarNuevoProfesorButton">
-                                    Ingresar
+                                <button type="button" class="btn btn-primary" id="ingresarNuevoPeriodoButton" disabled onclick="nuevo()">
+                                    Añadir
                                 </button>
                             </div>
                         </form>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -196,68 +160,36 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     <div class="form_container m-3">
-
-                        <form onsubmit="event.preventDefault()" id="formProfesor" method="post">
+                        <form>
                             <div class="mb-3">
-                                <label for="nombre_editar" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre_editar" name="nombre" placeholder="Ej: Juan Vasquez" oninput="validarFormularioEditProfesor2()">
+                                <label for="inicio_editar" class="form-label fw-bold">Inicio</label>
+
+                                <input type="month" class="form-control" id="inicio_editar" name="inicio_editar" oninput="validarFormularioEditar()">
+
                                 <div class="valid-feedback">
                                     <!-- Looks good! -->
                                 </div>
                                 <div class="invalid-feedback">
                                     Este campo es obigatorio.<br>
-                                    Solo se aceptan caracteres alfabéticos.
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="email_editar" class="form-label">Correo</label>
-                                <input type="email" class="form-control" id="email_editar" name="email" placeholder="Ej: nombre@example.com" oninput="validarFormularioEditProfesor2()">
-                                <div class="valid-feedback">
-                                    <!-- Looks good! -->
-                                </div>
-                                <div class="invalid-feedback">
-                                    Este campo es obligatorio<br>
-                                    Ingrese un correo válido.
-                                </div>
-                            </div>
+                                <label for="final_editar" class="form-label fw-bold">Final</label>
 
-                            <div class="mb-3">
-                                <label for="departamento_editar" class="form-label">Departamento</label>
-                                <select class="form-select" id="departamento_editar" name="departamento" oninput="validarFormularioEditProfesor2()">
-                                    <option value="" selected>--Seleccione--</option>
-                                    <option value="Ciencias de la Computacion">Ciencias de la Computación</option>
-                                    <option value="Ciencias Exactas">Ciencias Exactas</option>
-                                    <option value="Ciencias de la Tierra">Ciencias de la Tierra</option>
-                                    <option value="Ciencias de la Comunicacion">Ciencias de la Comunicacion</option>
-                                </select>
-                                <div class="valid-feedback">
-                                    <!-- Looks good! -->
-                                </div>
-                                <div class="invalid-feedback">
-                                    Este campo es obligatorio. Elija una opción.
-                                </div>
-                            </div>
+                                <input type="month" class="form-control" id="final_editar" name="final_editar" oninput="validarFormularioEditar()">
 
-                            <div class="mb-3">
-                                <label for="jornadaTrabajo_editar" class="form-label">Jornada de trabajo</label>
-                                <select class="form-select" id="jornadaTrabajo_editar" name="jornadaTrabajo" oninput="validarFormularioEditProfesor2()">
-                                    <option value="" selected>--Seleccione--</option>
-                                    <option value="Tiempo completo">Tiempo completo</option>
-                                    <option value="Tiempo parcial">Tiempo parcial</option>
-                                </select>
                                 <div class="valid-feedback">
                                     <!-- Looks good! -->
                                 </div>
                                 <div class="invalid-feedback">
-                                    Este campo es obligatorio. Elija una opción.
+                                    Este campo es obigatorio.<br>
                                 </div>
                             </div>
 
                             <div class="modal-footer">
                                 <input type="reset" value="Limpiar" class="btn btn-secondary me-3">
-                                <button type="button" class="btn btn-primary" id="editarProfesorButtonTest" disabled>
+                                <button type="button" class="btn btn-primary" id="editarPeriodoButton" disabled onclick="editar()">
                                     Editar
                                 </button>
                             </div>
@@ -270,16 +202,16 @@
         </div>
     </div>
 
-    <!-- Modal new profesor -->
+    <!-- Modal delete -->
     <div class="modal fade" id="modal_eliminar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-light">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar Profesor</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar Periodo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>¿Está seguro de eliminar al profesor?</p>
+                    <p>¿Está seguro de eliminar al periodo?</p>
                 </div>
                 <div class="modal-footer">
                     <input type="reset" value="Cancelar" class="btn btn-secondary me-3" data-bs-dismiss="modal" aria-label="Close">
@@ -295,7 +227,7 @@
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../js/nav_script.js"></script>
     <script src="../../js/validations.js"></script>
-    <script src="../../js/profesores.js"></script>
+    <script src="../../js/periodo_lectivo.js"></script>
 
 </body>
 

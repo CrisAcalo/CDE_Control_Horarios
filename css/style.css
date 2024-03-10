@@ -129,6 +129,14 @@
     display: none;
 }
 
+.max-width-max-content{
+    max-width: max-content;
+}
+
+.height-max-content{
+    height: max-content;
+}	
+
 /* ESTILOS DE BARRA DE SCROLL */
 ::-webkit-scrollbar {
     -webkit-appearance: none;

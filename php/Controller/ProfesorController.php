@@ -16,6 +16,10 @@ if ($funcion == "createProfesor") {
 
 function createProfesor()
 {
+    $response = [
+        "status" => "",
+        "response" => ""
+    ];
     $dateAct = date('Y/m/d h:i:s', time());
 
     // Obtener los datos JSON enviados por la solicitud
@@ -28,10 +32,14 @@ function createProfesor()
     $result = $profesor->save();
 
     // Enviar una respuesta basada en el resultado
-    if ($result === true) {
-        echo "Success: Profesor guardado correctamente.";
+    if ($result == true) {
+        $response["status"] = "Success";
+        $response["response"] = "Profesor creado correctamente";
+        echo json_encode($response);
     } else {
-        echo "Error: Error al guardar el profesor. Detalles: " . $result;
+        $response["status"] = "Error";
+        $response["response"] = "Error al crear el profesor. Detalles: " . $result;
+        echo json_encode($response);
     }
 }
 
@@ -49,10 +57,14 @@ function deleteProfesor()
     $result = $profesor->deleteProfesor($user_id);
 
     // Enviar una respuesta basada en el resultado
-    if ($result === true) {
-        echo "Success: Profesor eliminado correctamente.";
+    if ($result == true) {
+        $response["status"] = "Success";
+        $response["response"] = "Profesor eliminado correctamente";
+        echo json_encode($response);
     } else {
-        echo "Error: Error al eliminar el profesor. Detalles: " . $result;
+        $response["status"] = "Error";
+        $response["response"] = "Error al eliminar el profesor. Detalles: " . $result;
+        echo json_encode($response);
     }
 }
 

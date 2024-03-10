@@ -21,8 +21,9 @@
         <ul>
           <li><a href="../php/View/profesores.php">Profesores</a></li>
           <li><a href="../php/View/materias.php" target="content">Materias</a></li>
-          <li><a href="" target="content">Cursos</a></li>
+          <li><a href="../php/View/cursos.php" target="content">Cursos</a></li>
           <li><a href="" target="content">Horarios</a></li>
+          <li><a href="../php/View/periodo_lectivo.php">Periodos</a></li>
         </ul>
       </div>
 

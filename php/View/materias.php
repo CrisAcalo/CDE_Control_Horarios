@@ -21,8 +21,9 @@
             <ul>
                 <li><a href="./profesores.php">Profesores</a></li>
                 <li><a href="./materias.php" class="nav_item_selected">Materias</a></li>
-                <li><a href="">Cursos</a></li>
+                <li><a href="./cursos.php">Cursos</a></li>
                 <li><a href="">Horarios</a></li>
+                <li><a href="./periodo_lectivo.php">Periodos</a></li>
             </ul>
         </div>
 
@@ -67,8 +68,14 @@
     <div class="principal_container">
         <div class="mt-6">
             <div id="resultado_response" class="border p-2 bg-opacity-25 fw-bold rounded display_none"></div>
-            <div class="materias_contianer p-0">
-                <div class="card table_ingreso_container m-3 w-100">
+
+            <div class="mx-auto mt-3 p-0" style="width: 90%;max-width:700px;">
+                <div class="bg-primary p-3 rounded d-flex flex-wrap justify-content-center align-items-center w-100">
+                    <div class="bg-light py-1 px-4 rounded text-center max-width-max-content m-auto">
+                        <h2 class="max-width-max-content">Administración de Materias</h2>
+                    </div>
+                </div>
+                <div class="card mb-3 w-100">
                     <div class="card-body">
                         <div class="card mb-3">
                             <div class="card-header bg-primary text-light">
@@ -104,7 +111,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody_profesores">
-                                    
+
                                 </tbody>
                             </table>
                         </div>

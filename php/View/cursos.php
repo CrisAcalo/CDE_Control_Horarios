@@ -19,11 +19,12 @@
         <div class="navbar-left">
             <img src="../../img/dark_large_logo.png" alt="logo" class="logo" />
             <ul>
-                <li><a href="./profesores.php" class="nav_item_selected">Profesores</a></li>
+                <li><a href="./profesores.php">Profesores</a></li>
                 <li><a href="./materias.php">Materias</a></li>
-                <li><a href="./cursos.php">Cursos</a></li>
+                <li><a href="./cursos.php" class="nav_item_selected">Cursos</a></li>
                 <li><a href="">Horarios</a></li>
                 <li><a href="./periodo_lectivo.php">Periodos</a></li>
+
             </ul>
         </div>
 
@@ -72,12 +73,115 @@
             <div class="p-0 m-3 mx-auto" style="width: 100%;max-width:1500px;">
                 <div class="bg-primary p-3 rounded d-flex flex-wrap justify-content-center align-items-center">
                     <div class="bg-light py-1 px-4 rounded text-center max-width-max-content m-auto">
-                        <h2 class="max-width-max-content">Administración de Profesores</h2>
+                        <h2 class="max-width-max-content">Administración de NRCs</h2>
                     </div>
                     <button type="button" class="btn btn-success me-3 my-1 py-1 px-3 height-max-content fs-4" data-bs-toggle="modal" data-bs-target="#modal_nuevo">
                         <i class="bi bi-plus-square-dotted p-0 m-0"></i>
                     </button>
                 </div>
+                <form onsubmit="event.preventDefault()" id="formProfesor" method="post">
+                    <div class="mb-3">
+                        <label for="email_editar" class="form-label fw-bold">Profesor</label>
+
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+
+                        <div class="valid-feedback">
+                            <!-- Looks good! -->
+                        </div>
+                        <div class="invalid-feedback">
+                            Este campo es obigatorio.<br>
+                            Solo se aceptan caracteres alfabéticos.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email_editar" class="form-label fw-bold">Materia</label>
+
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+
+                        <div class="valid-feedback">
+                            <!-- Looks good! -->
+                        </div>
+                        <div class="invalid-feedback">
+                            Este campo es obigatorio.<br>
+                            Solo se aceptan caracteres alfabéticos.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email_editar" class="form-label fw-bold">Departamento</label>
+
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+
+                        <div class="valid-feedback">
+                            <!-- Looks good! -->
+                        </div>
+                        <div class="invalid-feedback">
+                            Este campo es obigatorio.<br>
+                            Solo se aceptan caracteres alfabéticos.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email_editar" class="form-label fw-bold">Carrera</label>
+
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+
+                        <div class="valid-feedback">
+                            <!-- Looks good! -->
+                        </div>
+                        <div class="invalid-feedback">
+                            Este campo es obigatorio.<br>
+                            Solo se aceptan caracteres alfabéticos.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email_editar" class="form-label fw-bold">Período Lectivo</label>
+
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+
+                        <div class="valid-feedback">
+                            <!-- Looks good! -->
+                        </div>
+                        <div class="invalid-feedback">
+                            Este campo es obigatorio.<br>
+                            Solo se aceptan caracteres alfabéticos.
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="reset" value="Limpiar" class="btn btn-secondary me-3">
+                        <button type="button" class="btn btn-primary" id="editarProfesorButtonTest" disabled>
+                            Editar
+                        </button>
+                    </div>
+                </form>
                 <div class="card">
                     <div class="card-body table_ingreso_container" style="max-height:calc(100vh - 195px)">
                         <table class="table-primary">
@@ -295,7 +399,7 @@
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../js/nav_script.js"></script>
     <script src="../../js/validations.js"></script>
-    <script src="../../js/profesores.js"></script>
+    <script src="../../js/cursos.js"></script>
 
 </body>
 
