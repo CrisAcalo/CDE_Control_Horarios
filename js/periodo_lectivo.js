@@ -105,7 +105,6 @@ function editar(user_id) {
         final: final.val(),
       }),
       success: function (response) {
-        cargar();
         response = JSON.parse(response);
 
         resultado_response
@@ -127,7 +126,7 @@ function editar(user_id) {
         botonEnviar.prop("disabled", true);
 
         if (response.status === "Success") {
-          cargarProfesores();
+          cargar();
         }
       },
       error: function (xhr, textStatus, errorThrown) {
@@ -187,7 +186,7 @@ function showInformation(user_id) {
 function eliminar(user_id) {
   const resultado_response = $("#resultado_response");
   $.ajax({
-    url: `../Controller/PeriodoController.php?function=delete&user_id=${user_id}`,
+    url: `../Controller/PeriodoController.php?function=deleteP&user_id=${user_id}`,
     method: "POST",
     success: function (response) {
       response = JSON.parse(response);
@@ -236,7 +235,7 @@ function cargar() {
         tbody_profesores.append(`
               <tr>
               <td>${element.id}</td>
-              <td>${element.name}</td>
+              <td>${element.nombre}</td>
               <td>${element.periodo_inicio}</td>
               <td>${element.periodo_fin}</td>
                 <td>

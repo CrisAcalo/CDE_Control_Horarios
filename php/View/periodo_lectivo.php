@@ -22,7 +22,7 @@
                 <li><a href="./profesores.php">Profesores</a></li>
                 <li><a href="./materias.php">Materias</a></li>
                 <li><a href="./cursos.php">Cursos</a></li>
-                <li><a href="">Horarios</a></li>
+                <li><a href="./horarios.php">Horarios</a></li>
                 <li><a href="./periodo_lectivo.php" class="nav_item_selected">Periodos</a></li>
             </ul>
         </div>

@@ -53,11 +53,11 @@ class Periodo
         $conexion->close();
         return $allData;
     }
-    public function deleteProfesor($user_id)
+    public function delete($user_id)
     {
         global $conexion;  // Accede a la conexión global
 
-        $sql = "DELETE FROM `profesores` WHERE id = '$user_id'";
+        $sql = "DELETE FROM `periodo_lectivo` WHERE id = '$user_id'";
 
         if ($conexion->query($sql)) {
             $conexion->close();

@@ -22,7 +22,7 @@
                 <li><a href="./profesores.php" class="nav_item_selected">Profesores</a></li>
                 <li><a href="./materias.php">Materias</a></li>
                 <li><a href="./cursos.php">Cursos</a></li>
-                <li><a href="">Horarios</a></li>
+                <li><a href="./horarios.php">Horarios</a></li>
                 <li><a href="./periodo_lectivo.php">Periodos</a></li>
             </ul>
         </div>
@@ -72,7 +72,7 @@
             <div class="p-0 m-3 mx-auto" style="width: 100%;max-width:1500px;">
                 <div class="bg-primary p-3 rounded d-flex flex-wrap justify-content-center align-items-center">
                     <div class="bg-light py-1 px-4 rounded text-center max-width-max-content m-auto">
-                        <h2 class="max-width-max-content">Administración de Profesores</h2>
+                        <h2 class="max-width-max-content">Administración de Horarios</h2>
                     </div>
                     <button type="button" class="btn btn-success me-3 my-1 py-1 px-3 height-max-content fs-4" data-bs-toggle="modal" data-bs-target="#modal_nuevo">
                         <i class="bi bi-plus-square-dotted p-0 m-0"></i>

@@ -124,6 +124,27 @@
     height: 100%;
 }
 
+.table_asignacion_horarios{
+    display: flex;
+}
+
+.materias_container{
+    width: 15%;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.horario_container{
+    width: 85%;
+}
+
+.materia_element{
+    width: 100%;
+    background: rgb(255, 106, 47);
+    border-radius: 4px;
+    padding: 5px;
+}
+
 /* ESTILOS GENERALES */
 .display_none{
     display: none;

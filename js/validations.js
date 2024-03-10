@@ -74,3 +74,19 @@ function validarTelefono(inputElement) {
     return false;
   }
 }
+
+function validarNRC(inputElement) {
+  const valor = inputElement.value;
+
+  // Permitir borrar y teclas de flechas
+  if (/^\d{5}$/.test(valor) && valor !== "") {
+    inputElement.classList.remove("is-invalid");
+    inputElement.classList.add("is-valid");
+    return true;
+  } else {
+    inputElement.value = valor.replace(/[^\d]/g, ""); // Eliminar caracteres no numéricos
+    inputElement.classList.add("is-invalid");
+    inputElement.classList.remove("is-valid");
+    return false;
+  }
+}

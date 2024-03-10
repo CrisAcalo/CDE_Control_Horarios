@@ -6,8 +6,8 @@ if ($funcion == "create") {
     create();
 } else if ($funcion == "getAll") {
     getAll();
-} else if ($funcion == "deleteProfesor") {
-    deleteProfesor();
+} else if ($funcion == "deleteP") {
+    deleteP();
 } else if ($funcion == "edit") {
     edit();
 } else if ($funcion == "getPeriodo") {
@@ -62,20 +62,20 @@ function getAll()
     echo json_encode($all);
 }
 
-function delete()
+function deleteP()
 {
     $user_id = $_GET["user_id"];
     $profesor = new Periodo();
-    $result = $profesor->deleteProfesor($user_id);
+    $result = $profesor->delete($user_id);
 
     // Enviar una respuesta basada en el resultado
     if ($result == true) {
         $response["status"] = "Success";
-        $response["response"] = "Profesor eliminado correctamente";
+        $response["response"] = "Periodo eliminado correctamente";
         echo json_encode($response);
     } else {
         $response["status"] = "Error";
-        $response["response"] = "Error al eliminar el profesor. Detalles: " . $result;
+        $response["response"] = "Error al eliminar el periodo. Detalles: " . $result;
         echo json_encode($response);
     }
 }

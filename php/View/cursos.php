@@ -22,7 +22,7 @@
                 <li><a href="./profesores.php">Profesores</a></li>
                 <li><a href="./materias.php">Materias</a></li>
                 <li><a href="./cursos.php" class="nav_item_selected">Cursos</a></li>
-                <li><a href="">Horarios</a></li>
+                <li><a href="./horarios.php">Horarios</a></li>
                 <li><a href="./periodo_lectivo.php">Periodos</a></li>
 
             </ul>
@@ -79,120 +79,18 @@
                         <i class="bi bi-plus-square-dotted p-0 m-0"></i>
                     </button>
                 </div>
-                <form onsubmit="event.preventDefault()" id="formProfesor" method="post">
-                    <div class="mb-3">
-                        <label for="email_editar" class="form-label fw-bold">Profesor</label>
-
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-
-                        <div class="valid-feedback">
-                            <!-- Looks good! -->
-                        </div>
-                        <div class="invalid-feedback">
-                            Este campo es obigatorio.<br>
-                            Solo se aceptan caracteres alfabéticos.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="email_editar" class="form-label fw-bold">Materia</label>
-
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-
-                        <div class="valid-feedback">
-                            <!-- Looks good! -->
-                        </div>
-                        <div class="invalid-feedback">
-                            Este campo es obigatorio.<br>
-                            Solo se aceptan caracteres alfabéticos.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="email_editar" class="form-label fw-bold">Departamento</label>
-
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-
-                        <div class="valid-feedback">
-                            <!-- Looks good! -->
-                        </div>
-                        <div class="invalid-feedback">
-                            Este campo es obigatorio.<br>
-                            Solo se aceptan caracteres alfabéticos.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="email_editar" class="form-label fw-bold">Carrera</label>
-
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-
-                        <div class="valid-feedback">
-                            <!-- Looks good! -->
-                        </div>
-                        <div class="invalid-feedback">
-                            Este campo es obigatorio.<br>
-                            Solo se aceptan caracteres alfabéticos.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="email_editar" class="form-label fw-bold">Período Lectivo</label>
-
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-
-                        <div class="valid-feedback">
-                            <!-- Looks good! -->
-                        </div>
-                        <div class="invalid-feedback">
-                            Este campo es obigatorio.<br>
-                            Solo se aceptan caracteres alfabéticos.
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <input type="reset" value="Limpiar" class="btn btn-secondary me-3">
-                        <button type="button" class="btn btn-primary" id="editarProfesorButtonTest" disabled>
-                            Editar
-                        </button>
-                    </div>
-                </form>
                 <div class="card">
                     <div class="card-body table_ingreso_container" style="max-height:calc(100vh - 195px)">
                         <table class="table-primary">
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th>Nombre</th>
-                                    <th>Correo</th>
+                                    <th>NRC</th>
+                                    <th>Profesor</th>
+                                    <th>Materia</th>
                                     <th>Departamento</th>
-                                    <th>Jornada</th>
-                                    <th>Horas Semanales</th>
+                                    <th>Carrera</th>
+                                    <th>Período</th>
                                     <th>OP</th>
                                 </tr>
                             </thead>
@@ -217,13 +115,24 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     <div class="form_container m-3">
-
                         <form onsubmit="event.preventDefault()" id="formProfesor" method="post">
                             <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej: Juan Vasquez" oninput="validarFormularioProfesor()">
+                                <label for="nrc" class="form-label fw-bold">NRC</label>
+
+                                <input type="text" class="form-control" id="nrc" name="nrc" oninput="validarFormulario()">
+                                <div class="valid-feedback">
+                                    <!-- Looks good! -->
+                                </div>
+                                <div class="invalid-feedback">
+                                    Este campo es obigatorio.<br>
+                                    5 caracteres numéricos
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="profesor_select" class="form-label fw-bold">Profesor</label>
+                                <select class="form-select" aria-label="Default select example" id="profesor_select" name="profesor_select" oninput="validarFormulario()">
+                                </select>
                                 <div class="valid-feedback">
                                     <!-- Looks good! -->
                                 </div>
@@ -233,57 +142,58 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Correo</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Ej: nombre@example.com" oninput="validarFormularioProfesor()">
-                                <div class="valid-feedback">
-                                    <!-- Looks good! -->
-                                </div>
-                                <div class="invalid-feedback">
-                                    Este campo es obligatorio<br>
-                                    Ingrese un correo válido.
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="departamento" class="form-label">Departamento</label>
-                                <select class="form-select" id="departamento" name="departamento" oninput="validarFormularioProfesor()">
-                                    <option value="" selected>--Seleccione--</option>
-                                    <option value="Ciencias de la Computacion">Ciencias de la Computación</option>
-                                    <option value="Ciencias Exactas">Ciencias Exactas</option>
-                                    <option value="Ciencias de la Tierra">Ciencias de la Tierra</option>
-                                    <option value="Ciencias de la Comunicacion">Ciencias de la Comunicacion</option>
+                                <label for="materia_select" class="form-label fw-bold">Materia</label>
+                                <select class="form-select" aria-label="Default select example" id="materia_select" name="materia_select" oninput="validarFormulario()">
                                 </select>
                                 <div class="valid-feedback">
                                     <!-- Looks good! -->
                                 </div>
                                 <div class="invalid-feedback">
-                                    Este campo es obligatorio. Elija una opción.
+                                    Este campo es obigatorio.<br>
                                 </div>
                             </div>
-
                             <div class="mb-3">
-                                <label for="jornadaTrabajo" class="form-label">Jornada de trabajo</label>
-                                <select class="form-select" id="jornadaTrabajo" name="jornadaTrabajo" oninput="validarFormularioProfesor()">
-                                    <option value="" selected>--Seleccione--</option>
-                                    <option value="Tiempo completo">Tiempo completo</option>
-                                    <option value="Tiempo parcial">Tiempo parcial</option>
+                                <label for="departamento_select" class="form-label fw-bold">Departamento</label>
+                                <select class="form-select" aria-label="Default select example" id="departamento_select" name="departamento_select" oninput="validarFormulario()" onchange="selectCarreras()">
                                 </select>
                                 <div class="valid-feedback">
                                     <!-- Looks good! -->
                                 </div>
                                 <div class="invalid-feedback">
-                                    Este campo es obligatorio. Elija una opción.
+                                    Este campo es obigatorio.<br>
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <label for="carrera_select" class="form-label fw-bold">Carrera</label>
+                                <select class="form-select" aria-label="Default select example" id="carrera_select" name="carrera_select" oninput="validarFormulario()">
+                                </select>
+                                <div class="valid-feedback">
+                                    <!-- Looks good! -->
+                                </div>
+                                <div class="invalid-feedback">
+                                    Este campo es obigatorio.<br>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="periodo_select" class="form-label fw-bold">Período Lectivo</label>
+                                <select class="form-select" aria-label="Default select example" id="periodo_select" name="periodo_select" oninput="validarFormulario()">
+                                    <option selected>Open this select menu</option>
+                                </select>
 
+                                <div class="valid-feedback">
+                                    <!-- Looks good! -->
+                                </div>
+                                <div class="invalid-feedback">
+                                    Este campo es obigatorio.<br>
+                                </div>
+                            </div>
                             <div class="modal-footer">
                                 <input type="reset" value="Limpiar" class="btn btn-secondary me-3">
-                                <button type="button" class="btn btn-primary" onclick="nuevoProfesor()" id="ingresarNuevoProfesorButton">
-                                    Ingresar
+                                <button type="button" class="btn btn-primary" id="ingresarNuevo" disabled onclick="nuevo()">
+                                    Agregar
                                 </button>
                             </div>
                         </form>
-
                     </div>
                 </div>
 
@@ -305,8 +215,21 @@
 
                         <form onsubmit="event.preventDefault()" id="formProfesor" method="post">
                             <div class="mb-3">
-                                <label for="nombre_editar" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre_editar" name="nombre" placeholder="Ej: Juan Vasquez" oninput="validarFormularioEditProfesor2()">
+                                <label for="nrc_edit" class="form-label fw-bold">NRC</label>
+
+                                <input type="text" class="form-control" id="nrc_edit" name="nrc_edit" oninput="validarFormularioEditar()">
+                                <div class="valid-feedback">
+                                    <!-- Looks good! -->
+                                </div>
+                                <div class="invalid-feedback">
+                                    Este campo es obigatorio.<br>
+                                    5 caracteres numéricos
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="profesor_select_edit" class="form-label fw-bold">Profesor</label>
+                                <select class="form-select" aria-label="Default select example" id="profesor_select_edit" name="profesor_select_edit" oninput="validarFormularioEditar()">
+                                </select>
                                 <div class="valid-feedback">
                                     <!-- Looks good! -->
                                 </div>
@@ -316,52 +239,54 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="email_editar" class="form-label">Correo</label>
-                                <input type="email" class="form-control" id="email_editar" name="email" placeholder="Ej: nombre@example.com" oninput="validarFormularioEditProfesor2()">
-                                <div class="valid-feedback">
-                                    <!-- Looks good! -->
-                                </div>
-                                <div class="invalid-feedback">
-                                    Este campo es obligatorio<br>
-                                    Ingrese un correo válido.
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="departamento_editar" class="form-label">Departamento</label>
-                                <select class="form-select" id="departamento_editar" name="departamento" oninput="validarFormularioEditProfesor2()">
-                                    <option value="" selected>--Seleccione--</option>
-                                    <option value="Ciencias de la Computacion">Ciencias de la Computación</option>
-                                    <option value="Ciencias Exactas">Ciencias Exactas</option>
-                                    <option value="Ciencias de la Tierra">Ciencias de la Tierra</option>
-                                    <option value="Ciencias de la Comunicacion">Ciencias de la Comunicacion</option>
+                                <label for="materia_select_edit" class="form-label fw-bold">Materia</label>
+                                <select class="form-select" aria-label="Default select example" id="materia_select_edit" name="materia_select_edit" oninput="validarFormularioEditar()">
                                 </select>
                                 <div class="valid-feedback">
                                     <!-- Looks good! -->
                                 </div>
                                 <div class="invalid-feedback">
-                                    Este campo es obligatorio. Elija una opción.
+                                    Este campo es obigatorio.<br>
                                 </div>
                             </div>
-
                             <div class="mb-3">
-                                <label for="jornadaTrabajo_editar" class="form-label">Jornada de trabajo</label>
-                                <select class="form-select" id="jornadaTrabajo_editar" name="jornadaTrabajo" oninput="validarFormularioEditProfesor2()">
-                                    <option value="" selected>--Seleccione--</option>
-                                    <option value="Tiempo completo">Tiempo completo</option>
-                                    <option value="Tiempo parcial">Tiempo parcial</option>
+                                <label for="departamento_select_edit" class="form-label fw-bold">Departamento</label>
+                                <select class="form-select" aria-label="Default select example" id="departamento_select_edit" name="departamento_select_edit" oninput="validarFormularioEditar()" onchange="selectCarrerasEdit()">
                                 </select>
                                 <div class="valid-feedback">
                                     <!-- Looks good! -->
                                 </div>
                                 <div class="invalid-feedback">
-                                    Este campo es obligatorio. Elija una opción.
+                                    Este campo es obigatorio.<br>
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <label for="carrera_select_edit" class="form-label fw-bold">Carrera</label>
+                                <select class="form-select" aria-label="Default select example" id="carrera_select_edit" name="carrera_select_edit" oninput="validarFormularioEditar()">
+                                </select>
+                                <div class="valid-feedback">
+                                    <!-- Looks good! -->
+                                </div>
+                                <div class="invalid-feedback">
+                                    Este campo es obigatorio.<br>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="periodo_select_edit" class="form-label fw-bold">Período Lectivo</label>
+                                <select class="form-select" aria-label="Default select example" id="periodo_select_edit" name="periodo_select_edit" oninput="validarFormularioEditar()">
+                                    <option selected>Open this select menu</option>
+                                </select>
 
+                                <div class="valid-feedback">
+                                    <!-- Looks good! -->
+                                </div>
+                                <div class="invalid-feedback">
+                                    Este campo es obigatorio.<br>
+                                </div>
+                            </div>
                             <div class="modal-footer">
                                 <input type="reset" value="Limpiar" class="btn btn-secondary me-3">
-                                <button type="button" class="btn btn-primary" id="editarProfesorButtonTest" disabled>
+                                <button type="button" class="btn btn-primary" id="editarButton" disabled>
                                     Editar
                                 </button>
                             </div>
